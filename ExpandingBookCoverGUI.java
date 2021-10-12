@@ -45,7 +45,7 @@ public class ExpandingBookCoverGUI implements Runnable {
 		frame.setLocationByPlatform(true);
 		frame.setVisible(true);
 		
-		Timer timer = new Timer(2500, new TimerListener(this, model));
+		Timer timer = new Timer(500, new TimerListener(this, model));
 		timer.start();
 	}
 	
@@ -73,32 +73,32 @@ public class ExpandingBookCoverGUI implements Runnable {
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			Graphics2D g2d = (Graphics2D) g;
-			
+
 			int margin = model.getMargin();
 			int x = margin;
 			int y = margin;
 			g2d.setColor(Color.YELLOW);
 			g2d.fillRect(x, y, model.getDrawingWidth(), model.getDrawingHeight());
-			
+
 			g2d.setColor(Color.BLACK);
 			g2d.setStroke(new BasicStroke(11f));
 			g2d.drawRect(x, y, model.getDrawingWidth(), model.getDrawingHeight());
-			
+
 			g2d.setColor(Color.BLUE);
 			g2d.fillPolygon(model.getCircle());
-			
+
 			g2d.setColor(Color.RED);
 			g2d.fillPolygon(model.getPentagon());
-			
+
 			String text = model.getAuthorName();
 			g2d.setFont(getFont().deriveFont(Font.BOLD, (float) model.getPointSize()));
-			
+
 			FontMetrics fm = g2d.getFontMetrics();
-	        Rectangle2D r = fm.getStringBounds(text, g2d);
-	        x = (model.getDrawingWidth() - (int) r.getWidth()) / 2 + margin;
-	        y = (model.getDrawingHeight() - (int) r.getHeight()) + fm.getAscent();
-	        g2d.setColor(Color.MAGENTA);
-	        g2d.drawString(text, x, y);
+			Rectangle2D r = fm.getStringBounds(text, g2d);
+			x = (model.getDrawingWidth() - (int) r.getWidth()) / 2 + margin;
+			y = (model.getDrawingHeight() - (int) r.getHeight()) + fm.getAscent();
+			g2d.setColor(Color.MAGENTA);
+			g2d.drawString(text, x, y);
 		}
 	}
 	
